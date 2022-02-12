@@ -1,5 +1,6 @@
 package com.hashcode.attempt.system;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Set;
 public class Output {
 
     private int num;
-    private Set<String> toppings;
+    private Set<String> toppings = new HashSet<>();
 
     public int getNum() {
 
