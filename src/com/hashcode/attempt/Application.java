@@ -1,5 +1,6 @@
 package com.hashcode.attempt;
 
+import com.hashcode.attempt.algo.RandomTry;
 import com.hashcode.attempt.system.Customer;
 import com.hashcode.attempt.system.Evaluator;
 import com.hashcode.attempt.system.Input;
@@ -25,9 +26,17 @@ public class Application {
         for (File input : inputs) {
             if (input.isFile()) {
                 Input example = readInput(input);
-
-                Output output = new Output();
-                System.out.println(input.getName() + " scores: " + Evaluator.evaluate(example, output));
+                AlgoInterface algoInterface = new RandomTry();
+                int maxScore = 0;
+                for (int i = 0; i < 1000; i++) {
+                    Output output = algoInterface.tryAlgo(example);
+                    int score = Evaluator.evaluate(example, output);
+                    if (maxScore < score) {
+                        maxScore = score;
+                    }
+                }
+                System.out.println(
+                        input.getName() + " scores: " + maxScore + " #customer: " + example.getNumCustomer());
             }
         }
     }
@@ -55,5 +64,6 @@ public class Application {
         }
         return input;
     }
+
 
 }
