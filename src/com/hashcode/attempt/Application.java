@@ -1,6 +1,6 @@
 package com.hashcode.attempt;
 
-import com.hashcode.attempt.algo.RandomTry;
+import com.hashcode.attempt.algo.NonDisliked;
 import com.hashcode.attempt.system.Customer;
 import com.hashcode.attempt.system.Evaluator;
 import com.hashcode.attempt.system.Input;
@@ -23,12 +23,13 @@ public class Application {
 
         File file = new File("src/com/hashcode/attempt/inputs");
         File[] inputs = file.listFiles();
+        int sum = 0;
         for (File input : inputs) {
             if (input.isFile()) {
                 Input example = readInput(input);
-                AlgoInterface algoInterface = new RandomTry();
+                AlgoInterface algoInterface = new NonDisliked();
                 int maxScore = 0;
-                for (int i = 0; i < 1000; i++) {
+                for (int i = 0; i < 1; i++) {
                     Output output = algoInterface.tryAlgo(example);
                     int score = Evaluator.evaluate(example, output);
                     if (maxScore < score) {
@@ -37,8 +38,10 @@ public class Application {
                 }
                 System.out.println(
                         input.getName() + " scores: " + maxScore + " #customer: " + example.getNumCustomer());
+                sum += maxScore;
             }
         }
+        System.out.println("Total scores: " + sum);
     }
 
 
@@ -64,6 +67,5 @@ public class Application {
         }
         return input;
     }
-
 
 }
