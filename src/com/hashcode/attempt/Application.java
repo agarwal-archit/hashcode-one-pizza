@@ -1,5 +1,6 @@
 package com.hashcode.attempt;
 
+import com.hashcode.attempt.algo.LikedVsDisliked;
 import com.hashcode.attempt.algo.NonDisliked;
 import com.hashcode.attempt.system.Customer;
 import com.hashcode.attempt.system.Evaluator;
@@ -27,7 +28,7 @@ public class Application {
         for (File input : inputs) {
             if (input.isFile()) {
                 Input example = readInput(input);
-                AlgoInterface algoInterface = new NonDisliked();
+                AlgoInterface algoInterface = new LikedVsDisliked();
                 int maxScore = 0;
                 for (int i = 0; i < 1; i++) {
                     Output output = algoInterface.tryAlgo(example);
